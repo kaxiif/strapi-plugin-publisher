@@ -47,12 +47,12 @@ module.exports = ({ strapi }) => ({
 		if (!action) {
 			return ctx.notFound('action not found');
 		}
-		const entry = await strapi.entityService.update('api::article.article',  id , {
+		await strapi.entityService.update('api::article.article',  action.entityId, {
   		data: {
-    		scheduled: null,
+    		scheduled: false,
   			},
 		});
-		console.log('entry delete ', entry);
+		
 
 		const deletedNote = await getPluginService(strapi, 'actionService').delete(id);
 
