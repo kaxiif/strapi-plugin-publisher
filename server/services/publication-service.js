@@ -49,6 +49,12 @@ module.exports = ({ strapi }) => ({
 		// ensure entity is in correct publication status
 		if (!entity.publishedAt && mode === 'publish') {
 			await this.publish(record.entitySlug, entityId);
+			let scheduled = await strapi.entityService.update('api::article.article', entityId , {
+  		data: {
+    		scheduled: null,
+  			},
+			});
+			
 		} else if (entity.publishedAt && mode === 'unpublish') {
 			await this.unpublish(record.entitySlug, entityId);
 		}
