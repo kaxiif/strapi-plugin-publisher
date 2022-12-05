@@ -49,7 +49,7 @@ module.exports = ({ strapi }) => ({
 		}
 		const entry = await strapi.entityService.update('api::article.article',  id , {
   		data: {
-    		scheduled: true,
+    		scheduled: null,
   			},
 		});
 		console.log('entry delete ', entry);
